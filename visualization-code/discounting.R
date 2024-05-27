@@ -3,7 +3,7 @@ rm(list = ls())
 library(ggplot2)
 
 proj_path <- getwd()
-
+proj_path <- 'C:/Users/isaac/Projects/bayesian-rl-chapter/github'
 data <- c()
 for (tag in c('default',
               'adjusted-params',
@@ -13,8 +13,11 @@ for (tag in c('default',
   data <- rbind(data, sub_data)
 }
 data$tag <- factor(data$tag,
-                   levels = c('default', 'adjusted-params', 'revaluation'),
-                   labels = c('Default parameters', 'Altered parameters', 'Revaluation'))
+                   levels = c('adjusted-params', 'default', 'revaluation'),
+                   labels = c('Altered parameters', 'Default parameters', 'Revaluation'))
+# data$tag <- factor(data$tag,
+#                    levels = c('default', 'adjusted-params', 'revaluation'),
+#                    labels = c('Default parameters', 'Altered parameters', 'Revaluation'))
 
 data$agent_type <- factor(data$agent_type, levels = c('MB', 'MF'), labels = c('Model-based', 'Model-free'))
 img <- ggplot(data = data, aes(x = n_wait, linetype = agent_type, y = p_delayed, fill = agent_type)) +
@@ -31,7 +34,7 @@ img <- ggplot(data = data, aes(x = n_wait, linetype = agent_type, y = p_delayed,
 plot(img)
   
 ggsave(plot = img,
-       filename = file.path(proj_path, 'figs', 'impulsivity.png'),
+       filename = file.path(proj_path, 'figs', 'impulsivity-2.png'),
        height = 20,
        width = 20,
        units = 'cm')

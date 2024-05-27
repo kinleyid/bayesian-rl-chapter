@@ -4,7 +4,7 @@ library(ggplot2)
 
 proj_path <- getwd()
 
-data <- read.csv(file.path(proj_path, 'data', 'two-stage-task.csv'))
+data <- read.csv('C:/Users/isaac/Projects/bayesian-rl-chapter/github/data/two-stage-task.csv')
 
 data <- data[complete.cases(data), ]
 data$last_r <- factor(data$last_r, levels = c(0, 1), labels = c('Unrewarded', 'Rewarded'))
@@ -29,11 +29,15 @@ img <- ggplot(
   scale_y_continuous(labels = function(x) {x - 0.5}) +
   scale_fill_grey() +
   theme_classic() +
-  theme(text = element_text(size = 20))
+  theme(
+    text = element_text(size = 20),
+    panel.spacing = unit(1, "cm"),
+    panel.border = element_rect(fill = NA)
+  )
 plot(img)
 
 ggsave(plot = img,
-       filename = file.path(proj_path, 'figs', 'two-stage-task.png'),
+       filename = 'C:/Users/isaac/Projects/bayesian-rl-chapter/github/figs/two-stage-task.png',
        height = 15,
        width = 20,
        units = 'cm')

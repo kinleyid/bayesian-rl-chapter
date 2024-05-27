@@ -22,7 +22,7 @@ for variant in ['default',
             'temperature': 1/3,
             'elig_decay': 1,
             'sensory_noise': 0.1,
-            'theta0': 5,
+            'theta0': 1,
             'normal_prior': {'mu': 0, 's2': 1}
         }
     else:

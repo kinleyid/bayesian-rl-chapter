@@ -4,7 +4,7 @@ library(ggplot2)
 
 proj_path <- getwd()
 
-data <- read.csv(file.path(proj_path, 'data', 'compulsivity.csv'))
+data <- read.csv('C:/Users/isaac/Projects/bayesian-rl-chapter/github/data/compulsivity.csv')
 data$addictive <- factor(data$addictive, levels = c('False', 'True'), labels = c('Control', 'Addictive'))
 data$agent_type <- factor(data$agent_type, levels = c('MF', 'MB'), labels = c('Model-free', 'Model-based'))
 data$train_n <- data$train_n + 1
@@ -20,11 +20,15 @@ img <- ggplot(data = data,
   labs(x = 'Training iteration', y = 'Value of level pull', fill = 'Reward type', linetype = 'Reward type') +
   scale_fill_manual(values = c('darkgray', 'lightgray')) +
   theme_classic() +
-  theme(text = element_text(size = 20))
+  theme(
+    text = element_text(size = 20),
+    panel.spacing = unit(1, "cm"),
+    panel.border = element_rect(fill = NA)
+  )
 plot(img)
 
 ggsave(plot = img,
-       filename = file.path(proj_path, 'figs', 'compulsivity.png'),
+       filename = 'C:/Users/isaac/Projects/bayesian-rl-chapter/github/figs/compulsivity.png',
        height = 15,
        width = 20,
        units = 'cm')
